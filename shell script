@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# Output file
+OUTFILE=~/sys-monitor/system_report.html
+
+# Start HTML
+echo "<html><head><title>System Report</title></head><body>" > "$OUTFILE"
+echo "<h1>System Monitoring Report - $(date)</h1>" >> "$OUTFILE"
+
+# Uptime
+echo "<h2>Uptime</h2><pre>$(uptime)</pre>" >> "$OUTFILE"
+
+# CPU Load
+echo "<h2>CPU Load</h2><pre>$(top -bn1 | grep "load average")</pre>" >> "$OUTFILE"
+
+# Memory Usage
+echo "<h2>Memory Usage</h2><pre>$(free -h)</pre>" >> "$OUTFILE"
+
+# Disk Usage
+echo "<h2>Disk Usage</h2><pre>$(df -h)</pre>" >> "$OUTFILE"
+
+# Logged-in Users
+echo "<h2>Logged-in Users</h2><pre>$(who)</pre>" >> "$OUTFILE"
+
+# End HTML
+echo "</body></html>" >> "$OUTFILE"
